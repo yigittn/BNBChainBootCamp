@@ -211,6 +211,9 @@ export const login = async () => {
   if (!isInitialized) {
     await init();
   }
+  if (selectedAccount == null) {
+    return;
+  }
   try {
     let res = await renterContract.methods.getUser(selectedAccount).call();
     return res;

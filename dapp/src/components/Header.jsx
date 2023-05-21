@@ -13,58 +13,53 @@ const Header = ({ name, lastName, address }) => {
   if (lastName) {
     stringLastName = JSON.stringify(lastName, null, 2);
   }
-  console.log(address);
+
   return (
-    <header className="bg-[#09090b]">
-      <div className="mx-auto  max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="flex items-center sm:justify-between sm:gap-4">
-          <div className="flex flex-1 items-center justify-between gap-8 sm:justify-end">
-            <div className="group flex shrink-0 items-center rounded-lg transition">
-              <div className="ms-2 hidden text-left text-xs sm:block">
-                <div className="block font-medium text-[20px] mb-2 cursor-default text-white">
-                  {name ? (
-                    <span>Hi, {stringName.replace(/"/g, "")}</span>
-                  ) : (
-                    <span></span>
-                  )}
-                </div>
-                <span className=" text-white text-[14px] cursor-default  ">
-                  <span className="text-[16px]">
-                    {address ? (
-                      <span>
-                        Connected with {firstThree + "..." + lastFour}
-                      </span>
-                    ) : (
-                      <span></span>
-                    )}
-                  </span>
+    <header
+      aria-label="Page Header"
+      className="bg-gradient-to-r from-slate-700 via-pink-900 to-black"
+    >
+      <div className="mx-auto cursor-default max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+        <div className="sm:flex sm:items-center sm:justify-between">
+          <div className="text-center sm:text-left">
+            <h1 className="text-3xl text-white  font-bold  sm:text-3xl">
+              Welcome{" "}
+              {stringName ? (
+                <span>
+                  {stringName.replace(/"/g, "")}{" "}
+                  {stringLastName.replace(/"/g, "")}
                 </span>
-              </div>
-            </div>
+              ) : (
+                <span></span>
+              )}
+            </h1>
+
+            <p className="mt-1.5  text-sm text-white ">
+              {stringName ? (
+                <span>Time to rent a house 🔥</span>
+              ) : (
+                <span className="text-[18px]">
+                  If you want to take advantage of our service and rent a house
+                  right away, please login 🚀
+                </span>
+              )}
+            </p>
           </div>
-        </div>
-        <div className="">
-          <h1 className="text-2xl cursor-default text-white  font-bold sm:text-3xl">
-            Welcome{" "}
-            {stringName ? (
+
+          <h1 className="  border border-black p-4 text-white bg-blue-700 rounded-2xl">
+            {name ? (
               <span>
-                {stringName.replace(/"/g, "")}{" "}
-                {stringLastName.replace(/"/g, "")}
+                Hi, {stringName.replace(/"/g, "")} <br />
+                {address ? (
+                  <span>Connected with {firstThree + "..." + lastFour}</span>
+                ) : (
+                  <span></span>
+                )}
               </span>
             ) : (
-              <span></span>
+              <span> Please Register or Login</span>
             )}
           </h1>
-          <p className="mt-1.5 text-sm cursor-default text-white  ">
-            {stringName ? (
-              <span>Time to rent a house 🔥</span>
-            ) : (
-              <span>
-                If you want to take advantage of our service and rent a house
-                right away, please login 🚀
-              </span>
-            )}
-          </p>
         </div>
       </div>
     </header>

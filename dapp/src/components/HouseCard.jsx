@@ -11,9 +11,11 @@ const HouseCard = ({ name, id, image, saleFee, rentFee, houseStatus }) => {
     await CheckIn(id);
   };
 
+  console.log(image);
+
   return (
-    <div className="max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className=" grid-cols-3 justify-center items-center">
+      <div className="flex justify-center items-center ">
         <div className="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
           <img
             className="h-52 flex flex-col justify-center items-center bg-amber-500 rounded-t-xl"
@@ -24,8 +26,8 @@ const HouseCard = ({ name, id, image, saleFee, rentFee, houseStatus }) => {
               {name}
             </span>
             <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
-              <p>House fee : {Web3.utils.fromWei(props.rentFee)} </p>
-              <p>Sale fee:{Web3.utils.fromWei(props.saleFee)} </p>
+              <p>House fee : {Web3.utils.fromWei(rentFee)} </p>
+              <p>Sale fee:{Web3.utils.fromWei(saleFee)} </p>
               <p>{houseStatus === "2" ? "Available" : "Not Available"}</p>
             </h3>
             <p className="mt-3 text-gray-500">House Description</p>

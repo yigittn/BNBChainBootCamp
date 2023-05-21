@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import HouseCard from "./components/HouseCard";
 import Header from "./components/Header";
+import Information from "./components/Information";
+import AdminDashboard from "./components/AdminDashboard";
 import Web3 from "web3";
 import {
   getUserAddress,
@@ -21,16 +23,20 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [userCredit, setUserCredit] = useState("0");
   const [due, setDue] = useState("0");
-  const [isAvailable, setIsAvailable] = useState("Can't Rent Right Now");
+  const [isAvailable, setIsAvailable] = useState("You can rent a house");
   const [rideMins, setRideMins] = useState("0");
+  const [loading, setLoading] = useState(true);
 
   const emptyAddress = "0x0000000000000000000000000000000000000000";
 
   useEffect(() => {
     let handleInit = async () => {
+      setLoading(true);
       let isAUser = await login();
-      if (isAUser.address !== emptyAddress) {
-        setLoggedIn(true);
+      if (isAUser?.address !== emptyAddress) {
+        if (isAUser?.name) {
+          setLoggedIn(true);
+        }
         setUserName(isAUser?.name);
         setLastName(isAUser[2]);
         setAddress(isAUser?.walletAddress);
@@ -71,10 +77,10 @@ function App() {
         }
         setRideMins(rideMins);
       }
+      setLoading(false);
     };
     handleInit();
   }, []);
-
   const handleNameChange = async (e) => {
     setName(e.target.value);
   };
@@ -87,28 +93,38 @@ function App() {
     e.preventDefault();
     try {
       let res = await register(name, lastName);
-      setLoggedIn(true);
-      console.log(res);
+      if (res) {
+        setLoggedIn(true);
+        window.location.reload();
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
+  const imgURL = house[0]?.[2];
+
   return (
     <>
       <Header name={userName} lastName={lastName} address={address} />
-      <div className="bg-[#111112] flex justify-center mx-auto items-center min-h-screen">
+      <div className="bg-gradient-to-r from-slate-700 via-pink-900 to-black  flex justify-center ">
         {loggedIn ? (
           <div>
-            sa{" "}
-            <div>
+            <Information
+              userCredit={userCredit}
+              due={due}
+              rideMins={rideMins}
+              isAvailable={isAvailable}
+            />
+            <div className=" mt-[10rem] flex justify-center mb-20 items-center gap-16">
               {house.length > 0 ? (
                 house.map((house) => {
                   return (
                     <HouseCard
+                      key={house.id}
                       name={house.name}
                       id={house.id}
-                      image={house.image}
+                      image={imgURL}
                       saleFee={house.saleFee}
                       rentFee={house.rentFee}
                       houseStatus={house.houseStatus}
@@ -122,7 +138,7 @@ function App() {
           </div>
         ) : (
           <form
-            className=" w-[40rem]  border rounded-md border-white flex flex-col p-6"
+            className=" w-[40rem] h-[17rem] mt-[12rem]  border rounded-md border-white flex flex-col p-6"
             onSubmit={handleRegister}
           >
             <div className="relative  block overflow-hidden rounded-sm border-b border-white  px-3 pt-3  focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600">
@@ -150,13 +166,14 @@ function App() {
               </span>
             </div>
             <button type="submit">
-              <div className="mt-6 flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700">
+              <div className="mt-16 flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-600 hover:bg-blue-700">
                 Register
               </div>
             </button>
           </form>
         )}
       </div>
+      {/*{isAdmin && <AdminDashboard />} */}
     </>
   );
 }
