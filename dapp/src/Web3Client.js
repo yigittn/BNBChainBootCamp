@@ -15,7 +15,7 @@ export const init = async () => {
       .then((accounts) => {
         selectedAccount = accounts[0];
       })
-      .cathc((err) => {
+      .catch((err) => {
         console.log(err);
         return;
       });
@@ -58,7 +58,7 @@ export const register = async (name, _lastName) => {
   }
   try {
     let res = await renterContract.methods
-      .register(name, _lastName)
+      .addUser(name, _lastName)
       .send({ from: selectedAccount });
     return res;
   } catch (error) {
@@ -200,7 +200,7 @@ export const getOwner = async () => {
     await init();
   }
   try {
-    let res = await renterContract.methods.owner().call();
+    let res = await renterContract.methods.getOwner().call();
     return res.toString();
   } catch (error) {
     console.log(error);
