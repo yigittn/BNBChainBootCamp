@@ -4,14 +4,13 @@ import Web3 from "web3";
 
 const HouseCard = ({ name, id, image, saleFee, rentFee, houseStatus }) => {
   const handleCheckOut = async () => {
-    await checkOut(id);
+    const res = await checkOut(id);
+    console.log(res);
   };
 
   const handleCheckIn = async () => {
     await CheckIn(id);
   };
-
-  console.log(image);
 
   return (
     <div className=" grid-cols-3 justify-center items-center">
@@ -23,11 +22,11 @@ const HouseCard = ({ name, id, image, saleFee, rentFee, houseStatus }) => {
           />
           <div className="p-4 md:p-6">
             <span className="block mb-1 text-xs font-semibold uppercase text-amber-500">
-              {name}
+              {name} - id: {id}
             </span>
             <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
               <p>House fee : {Web3.utils.fromWei(rentFee)} </p>
-              <p>Sale fee:{Web3.utils.fromWei(saleFee)} </p>
+              <p>Sale fee: {Web3.utils.fromWei(saleFee)} </p>
               <p>{houseStatus === "2" ? "Available" : "Not Available"}</p>
             </h3>
             <p className="mt-3 text-gray-500">House Description</p>
@@ -37,13 +36,13 @@ const HouseCard = ({ name, id, image, saleFee, rentFee, houseStatus }) => {
               onClick={() => handleCheckOut(id)}
               className="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-br-xl font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50   transition-all text-sm sm:p-4 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white"
             >
-              Check Out
+              Check In
             </button>
             <button
               onClick={() => handleCheckIn()}
               className="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-br-xl font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50   transition-all text-sm sm:p-4 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white"
             >
-              Check In
+              Check Out
             </button>
           </div>
         </div>

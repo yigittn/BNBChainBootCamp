@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import Information from "./components/Information";
 import AdminDashboard from "./components/AdminDashboard";
 import Web3 from "web3";
+const web3 = new Web3();
 import {
   getUserAddress,
   register,
@@ -22,28 +23,26 @@ function App() {
   const [lastName, setLastName] = useState({});
   const [isAdmin, setIsAdmin] = useState(false);
   const [userCredit, setUserCredit] = useState("0");
-  const [due, setDue] = useState("0");
+  const [due, setDue] = useState(0);
   const [isAvailable, setIsAvailable] = useState("You can rent a house");
   const [rideMins, setRideMins] = useState("0");
-  const [loading, setLoading] = useState(true);
 
   const emptyAddress = "0x0000000000000000000000000000000000000000";
 
   useEffect(() => {
     let handleInit = async () => {
-      setLoading(true);
       let isAUser = await login();
       if (isAUser?.address !== emptyAddress) {
         if (isAUser?.name) {
           setLoggedIn(true);
+          setUserCredit(web3.utils.fromWei(isAUser[4], "ether"));
+          console.log(isAUser.debt);
         }
         setUserName(isAUser?.name);
         setLastName(isAUser[2]);
         setAddress(isAUser?.walletAddress);
-        let userDue = Web3.utils
-          .fromWei(String(isAUser.debt), "ether")
-          .toString();
-        setDue(userDue);
+        let userDue = Web3.utils.fromWei(isAUser.debt, "ether");
+        setDue(Number(userDue));
 
         let address = await getUserAddress();
         let owner = await getOwner();
@@ -62,13 +61,11 @@ function App() {
 
         if (isAUser.rentedHouseId !== "0") {
           let rentedHouse = await getHouse(Number(isAUser.rentedHouseId));
-          setIsAvailable(`Rented: ${rentedHouse.name} - ${rentedHouse.id}`);
+          setIsAvailable(`Rented: ${rentedHouse.name} - Id :${rentedHouse.id}`);
         } else {
           console.log(due);
-          if (due !== "0") {
-            setIsAvailable("You have due to pay");
-          }
         }
+
         let rideMins = "0";
         if (isAUser.rentedHouseId !== "0") {
           rideMins = Math.floor(
@@ -77,7 +74,6 @@ function App() {
         }
         setRideMins(rideMins);
       }
-      setLoading(false);
     };
     handleInit();
   }, []);
@@ -101,13 +97,21 @@ function App() {
       console.log(error);
     }
   };
+  useEffect(() => {
+    console.log("sadasd");
+    if (due !== 0) {
+      setIsAvailable("You have to pay your debt");
+      console.log(due);
+    }
+  }, [due]);
 
   const imgURL = house[0]?.[2];
+  console.log(due);
 
   return (
     <>
       <Header name={userName} lastName={lastName} address={address} />
-      <div className="bg-gradient-to-r from-slate-700 via-pink-900 to-black  flex justify-center ">
+      <div className="bg-gradient-to-r from-slate-700 via-pink-900 to-black h-screen flex justify-center ">
         {loggedIn ? (
           <div>
             <Information
