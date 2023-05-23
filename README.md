@@ -14,12 +14,12 @@ I didn't use websocketprovider therefore you need to refresh the page after tx.
 
 So you are not the owner you cant see the admin dashboard don't worry, you didn't miss much, it's not such a nice component seems like:
 
-![image](https://github.com/yigittn/BNBChainBootCamp/assets/96335654/4f1a6ce0-6d56-4512-b3db-9c5a1b6ac820)
+![image](https://github.com/yigittn/BNBChainBootCamp/assets/96335654/9194d5c3-dbc0-4cf6-9092-4240e50836e7)
 
 Owner can see this page not a big deal therefore i've not worked on it. 
 He can add new house and edit house metadata and status and also he can withdraw balance from contract and set new owner for contract.
 
-![image](https://github.com/yigittn/BNBChainBootCamp/assets/96335654/9194d5c3-dbc0-4cf6-9092-4240e50836e7)
+
 
 
 This study has been conducted solely for educational purposes and does not pursue any particular objective. I would like to express my gratitude in advance for your recommendations and feedback.Thanks for visiting!
