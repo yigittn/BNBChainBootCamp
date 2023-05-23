@@ -2,11 +2,13 @@ import React from "react";
 import { checkOut, CheckIn } from "../Web3Client";
 import Web3 from "web3";
 
-const HouseCard = ({ name, id, image, saleFee, rentFee, houseStatus }) => {
+const HouseCard = ({ name, id, image, saleFee, rentFee, houseStatus, due }) => {
   const handleCheckOut = async () => {
     const res = await checkOut(id);
     console.log(res);
   };
+
+  console.log(due);
 
   const handleCheckIn = async () => {
     await CheckIn(id);
@@ -33,14 +35,16 @@ const HouseCard = ({ name, id, image, saleFee, rentFee, houseStatus }) => {
           </div>
           <div className="mt-auto flex border-t border-gray-200 divide-x divide-gray-200 dark:border-gray-700 dark:divide-gray-700">
             <button
+              disabled={due > 0 ? true : false}
               onClick={() => handleCheckOut(id)}
-              className="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-br-xl font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50   transition-all text-sm sm:p-4 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white"
+              className=" disabled:cursor-not-allowed w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-br-xl font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50   transition-all text-sm sm:p-4 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white"
             >
               Check In
             </button>
             <button
+              disabled={due > 0 ? true : false}
               onClick={() => handleCheckIn()}
-              className="w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-br-xl font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50   transition-all text-sm sm:p-4 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white"
+              className="  disabled:cursor-not-allowed w-full py-3 px-4 inline-flex justify-center items-center gap-2 rounded-br-xl font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50   transition-all text-sm sm:p-4 dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white"
             >
               Check Out
             </button>

@@ -107,29 +107,25 @@ const AdminDashboard = () => {
     }
   };
 
-  console.log(ownerAddress);
-
   useEffect(() => {
-    const fetchTotalPayments = async () => {
-      const totalPayments = await getTotalPayments();
-      console.log(totalPayments);
-      setTotalPayments(totalPayments);
-    };
-    const fetchOwner = async () => {
+    const fetchInfo = async () => {
       const owner = await getOwner();
-      console.log(owner);
+      const totalRevenue = await getTotalPayments();
+      console.log(totalRevenue);
+      setTotalPayments(totalRevenue);
       setCurrentOwner(owner);
     };
-    fetchTotalPayments();
-    fetchOwner();
+    fetchInfo();
   }, []);
 
   return (
     <div className="bg-gradient-to-r  border-t-2  border-white  from-slate-700 via-pink-900 to-black">
       <div className="flex justify-center gap-x-10 items-center">
-        <form className="" onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="name">Name:</label>
+            <label className="text-white" htmlFor="name">
+              Name:
+            </label>
             <input
               type="text"
               placeholder="House Name"
@@ -139,7 +135,9 @@ const AdminDashboard = () => {
             />
           </div>
           <div>
-            <label htmlFor="url">URL: </label>
+            <label className="text-white" htmlFor="url">
+              URL:{" "}
+            </label>
             <input
               type="text"
               placeholder="House Picture Url"
@@ -149,7 +147,9 @@ const AdminDashboard = () => {
             />
           </div>
           <div>
-            <label htmlFor="rent">Rent:</label>
+            <label className="text-white" htmlFor="rent">
+              Rent:
+            </label>
             <input
               type="text"
               placeholder="Rent Fee"
@@ -159,7 +159,9 @@ const AdminDashboard = () => {
             />
           </div>
           <div>
-            <label htmlFor="sale">Sale:</label>
+            <label className="text-white" htmlFor="sale">
+              Sale:
+            </label>
             <input
               type="text"
               placeholder="Sale Fee"
@@ -213,7 +215,9 @@ const AdminDashboard = () => {
         </div>
         <form className="" onSubmit={editHouseData}>
           <div>
-            <label htmlFor="name">Id:</label>
+            <label className="text-white" htmlFor="name">
+              Id:
+            </label>
             <input
               type="text"
               placeholder="House Id"
@@ -222,7 +226,9 @@ const AdminDashboard = () => {
             />
           </div>
           <div>
-            <label htmlFor="name">Name:</label>
+            <label className="text-white" htmlFor="name">
+              Name:
+            </label>
             <input
               type="text"
               placeholder="New House Name"
@@ -231,7 +237,9 @@ const AdminDashboard = () => {
             />
           </div>
           <div>
-            <label htmlFor="url">URL: </label>
+            <label className="text-white" htmlFor="url">
+              URL:{" "}
+            </label>
             <input
               type="text"
               placeholder="New House Picture Url"
@@ -239,7 +247,9 @@ const AdminDashboard = () => {
             />
           </div>
           <div>
-            <label htmlFor="rent">Rent:</label>
+            <label className="text-white" htmlFor="rent">
+              Rent:
+            </label>
             <input
               type="text"
               placeholder="New Rent Fee"
@@ -247,7 +257,9 @@ const AdminDashboard = () => {
             />
           </div>
           <div>
-            <label htmlFor="sale">Sale:</label>
+            <label className="text-white" htmlFor="sale">
+              Sale:
+            </label>
             <input
               type="text"
               placeholder="New Sale Fee"
@@ -280,8 +292,8 @@ const AdminDashboard = () => {
             />
           </div>
           <span className="text-red-500">
-            0 = retired ( Home disappears from the screen) <br /> 1 = InUse{" "}
-            <br /> 2 = Available
+            0 = retired ( Home disappears from the screen) <br /> 1 = InUse (
+            Home disappears from the screen) <br /> 2 = Available
           </span>
           <button
             className="bg-gradient-to-r h-8 text-xl justify-center flex items-center from-pink-500 via-red-400 to-yellow-500 rounded-full  p-[10px]  focus:outline-none focus:ring active:text-opacity-75"
@@ -296,3 +308,6 @@ const AdminDashboard = () => {
 };
 
 export default AdminDashboard;
+
+// I know seems like a terrible css but i am not a css guy so i just used tailwind css anyway just owner can see this page not a big deal and
+// he can add new house and edit house metadata and status and also he can withdraw balance from contract and set new owner for contract

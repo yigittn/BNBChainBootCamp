@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="relative mx-auto  max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8 lg:pt-24">
         <div className="lg:flex lg:items-end lg:justify-between">
           <div>
-            <p className="mx-auto max-w-md text-center leading-relaxed lg:text-left">
+            <p className="mx-auto hover:scale-105 cursor-default max-w-md text-center leading-relaxed lg:text-left">
               This study has been conducted solely for educational purposes and
               does not pursue any particular objective. I would like to express
               my gratitude in advance for your recommendations and

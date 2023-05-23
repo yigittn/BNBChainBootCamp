@@ -15,7 +15,6 @@ import {
   login,
 } from "./Web3Client";
 function App() {
-  const [showModal, setShowModal] = useState(false);
   const [address, setAddress] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
@@ -125,6 +124,7 @@ function App() {
                       saleFee={house.saleFee}
                       rentFee={house.rentFee}
                       houseStatus={house.status}
+                      due={due}
                     />
                   );
                 })
