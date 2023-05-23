@@ -44,7 +44,7 @@ export const setOwner = async (_newOwner) => {
   }
   try {
     let res = await renterContract.methods
-      .setOwner(_newOwner.loverCase())
+      .setOwner(_newOwner.toLowerCase())
       .send({ from: selectedAccount });
     return res;
   } catch (error) {

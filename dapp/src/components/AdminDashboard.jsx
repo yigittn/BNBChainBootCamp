@@ -107,6 +107,8 @@ const AdminDashboard = () => {
     }
   };
 
+  console.log(ownerAddress);
+
   useEffect(() => {
     const fetchTotalPayments = async () => {
       const totalPayments = await getTotalPayments();
@@ -121,9 +123,9 @@ const AdminDashboard = () => {
     fetchTotalPayments();
     fetchOwner();
   }, []);
-  console.log(currentOwner);
+
   return (
-    <div className="bg-gradient-to-r  from-slate-700 via-pink-900 to-black">
+    <div className="bg-gradient-to-r  border-t-2  border-white  from-slate-700 via-pink-900 to-black">
       <div className="flex justify-center gap-x-10 items-center">
         <form className="" onSubmit={handleSubmit}>
           <div>
@@ -278,7 +280,8 @@ const AdminDashboard = () => {
             />
           </div>
           <span className="text-red-500">
-            0 = retired <br /> 1 = InUse <br /> 2 = Available
+            0 = retired ( Home disappears from the screen) <br /> 1 = InUse{" "}
+            <br /> 2 = Available
           </span>
           <button
             className="bg-gradient-to-r h-8 text-xl justify-center flex items-center from-pink-500 via-red-400 to-yellow-500 rounded-full  p-[10px]  focus:outline-none focus:ring active:text-opacity-75"

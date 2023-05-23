@@ -98,16 +98,15 @@ function App() {
   useEffect(() => {
     if (due !== 0) {
       setIsAvailable("You have to pay your debt");
-      console.log(due);
     }
   }, [due]);
 
   return (
     <>
       <Header name={userName} lastName={lastName} address={address} />
-      <div className="bg-gradient-to-r from-slate-700 via-pink-900 to-black h-screen flex justify-center ">
+      <div className="bg-gradient-to-r  from-slate-700 via-pink-900 to-black h-screen flex justify-center ">
         {loggedIn ? (
-          <div>
+          <div className="flex flex-col items-center justify-center">
             <Information
               userCredit={userCredit}
               due={due}

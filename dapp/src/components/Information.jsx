@@ -33,8 +33,8 @@ const Information = ({ userCredit, rideMins, due, isAvailable }) => {
 
   return (
     <>
-      <div className="flex gap-x-6 mt-[6rem] ml-[22rem]">
-        <article className="flex items-center justify-between gap-4 rounded-lg border w-[12rem] border-gray-100 bg-white p-6">
+      <div className=" flex gap-x-6 mt-[6rem] ">
+        <article className="flex items-center justify-between gap-4 rounded-lg border  border-gray-100 bg-white p-6">
           <span className="rounded-full bg-blue-100 p-3 text-blue-600"></span>
 
           <div>
@@ -65,7 +65,8 @@ const Information = ({ userCredit, rideMins, due, isAvailable }) => {
           </div>
         </article>
       </div>
-      <div className="flex gap-x-12 justify-center items-center mt-10">
+
+      <div className="flex gap-x-12 justify-center items-center  mt-10">
         <label className="relative block overflow-hidden border-b border-gray-200 bg-transparent pt-3 focus-within:white">
           <input
             placeholder="BNB for deposit"
@@ -95,7 +96,7 @@ const Information = ({ userCredit, rideMins, due, isAvailable }) => {
           onClick={payDue}
           className="bg-gradient-to-r h-8 text-xl justify-center flex items-center from-pink-500 via-red-400 to-yellow-500 rounded-full  p-[10px]  focus:outline-none focus:ring active:text-opacity-75"
         >
-          Pay Your Due
+          Pay Your Debt
         </button>
       </div>
     </>
