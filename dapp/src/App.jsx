@@ -37,7 +37,6 @@ function App() {
         if (isAUser?.name) {
           setLoggedIn(true);
           setUserCredit(web3.utils.fromWei(isAUser[4], "ether"));
-          console.log(isAUser.debt);
         }
         setUserName(isAUser?.name);
         setLastName(isAUser[2]);
@@ -63,8 +62,6 @@ function App() {
         if (isAUser.rentedHouseId !== "0") {
           let rentedHouse = await getHouse(Number(isAUser.rentedHouseId));
           setIsAvailable(`Rented: ${rentedHouse.name} - Id :${rentedHouse.id}`);
-        } else {
-          console.log(due);
         }
 
         let rideMins = "0";
@@ -175,7 +172,7 @@ function App() {
         )}
       </div>
       <Footer />
-      {/*{isAdmin && <AdminDashboard />} */}
+      {isAdmin && <AdminDashboard />}
     </>
   );
 }
