@@ -17,7 +17,7 @@ const HouseCard = ({ name, id, image, saleFee, rentFee, houseStatus }) => {
       <div className="flex justify-center items-center ">
         <div className="group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
           <img
-            className="h-52 flex flex-col justify-center items-center bg-amber-500 rounded-t-xl"
+            className="h-52 w-[29rem] flex flex-col justify-center items-center bg-amber-500 rounded-t-xl"
             src={image}
           />
           <div className="p-4 md:p-6">

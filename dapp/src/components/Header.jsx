@@ -57,7 +57,7 @@ const Header = ({ name, lastName, address }) => {
                 )}
               </span>
             ) : (
-              <span> Please Register or Login</span>
+              <span> Please Connect Your Wallet</span>
             )}
           </h1>
         </div>

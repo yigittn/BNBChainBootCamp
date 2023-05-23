@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import HouseCard from "./components/HouseCard";
 import Header from "./components/Header";
 import Information from "./components/Information";
+import Footer from "./components/Footer";
 import AdminDashboard from "./components/AdminDashboard";
 import Web3 from "web3";
 const web3 = new Web3();
@@ -98,15 +99,11 @@ function App() {
     }
   };
   useEffect(() => {
-    console.log("sadasd");
     if (due !== 0) {
       setIsAvailable("You have to pay your debt");
       console.log(due);
     }
   }, [due]);
-
-  const imgURL = house[0]?.[2];
-  console.log(due);
 
   return (
     <>
@@ -128,15 +125,15 @@ function App() {
                       key={house.id}
                       name={house.name}
                       id={house.id}
-                      image={imgURL}
+                      image={house.imgUrl}
                       saleFee={house.saleFee}
                       rentFee={house.rentFee}
-                      houseStatus={house.houseStatus}
+                      houseStatus={house.status}
                     />
                   );
                 })
               ) : (
-                <div>House Loading...</div>
+                <div className="text-white text-2xl">House Loading...</div>
               )}
             </div>
           </div>
@@ -177,6 +174,7 @@ function App() {
           </form>
         )}
       </div>
+      <Footer />
       {/*{isAdmin && <AdminDashboard />} */}
     </>
   );
